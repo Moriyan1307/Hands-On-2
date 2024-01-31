@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib> // Added for rand()
+#include <chrono>
 
 void bubbleSort(int arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
@@ -19,7 +20,10 @@ void printArray(int arr[], int size) {
 }
 
 int main() {
-    const int N = 100;
+
+     auto start = std::chrono::high_resolution_clock::now();
+
+    const int N = 1000000;
     int arr[N];
 
     // Filling the array with random numbers
@@ -34,6 +38,12 @@ int main() {
 
     std::cout << "Sorted array: ";
     printArray(arr, N);
+
+    auto end = std::chrono::high_resolution_clock::now();
+
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+
+    std::cout << "Execution time: " << duration << " ms" << std::endl;
 
     return 0;
 }

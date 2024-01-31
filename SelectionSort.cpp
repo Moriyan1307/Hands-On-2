@@ -1,6 +1,9 @@
 #include <iostream>
 #include <algorithm> // Added for std::swap
 #include <random>    // Added for std::random_device, std::mt19937, and std::uniform_int_distribution
+#include <chrono>
+
+
 
 // Function for Selection sort
 void selectionSort(int arr[], int n) {
@@ -34,7 +37,10 @@ void printArray(int arr[], int size) {
 }
 
 int main() {
-    const int N = 100;
+    auto start = std::chrono::high_resolution_clock::now();
+
+
+    const int N = 1000000;  // Various number of input
     int arr[N];
 
     // Filling the array with random numbers
@@ -50,6 +56,14 @@ int main() {
 
     std::cout << "Sorted array: ";
     printArray(arr, N);
+
+    auto end = std::chrono::high_resolution_clock::now();
+
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+
+    std::cout << "Execution time: " << duration << " ms" << std::endl;
+
+
 
     return 0;
 }
